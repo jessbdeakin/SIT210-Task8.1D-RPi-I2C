@@ -32,13 +32,13 @@ class LightSensor():
 def luxToCategory(lux):
     if lux == 0:
         return "Too dark"
-    elif 0 < lux <= 20:
+    elif 0 < lux <= 10:
         return "Dark"
-    elif 20 < lux <= 50:
+    elif 10 < lux <= 15:
         return "Medium"
-    elif 50 < lux <= 100:
+    elif 15 < lux <= 20:
         return "Bright"
-    elif 100 < lux:
+    elif 20 < lux:
         return "Too bright"
 
 ######
