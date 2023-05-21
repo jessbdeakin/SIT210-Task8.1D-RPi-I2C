@@ -1,11 +1,7 @@
-import RPi.GPIO as gpio
 import smbus
 import time
 
-ledPin = 11
 lightSensorAddress = 0x23
-
-
 
 class LightSensor():
     
@@ -33,7 +29,6 @@ class LightSensor():
         data = self.bus.read_i2c_block_data(self.address, mode)
         return ((data[0] << 8) | data[1]) * LightSensor.UNIT_FACTOR
 
-
 def luxToCategory(lux):
     if lux == 0:
         return "Too dark"
@@ -49,10 +44,6 @@ def luxToCategory(lux):
 ######
 
 bus = smbus.SMBus(1)
-
-gpio.setmode(gpio.BOARD)
-gpio.setup(ledPin, gpio.OUT)
-
 lightSensor = LightSensor(bus, lightSensorAddress, LightSensor.Mode.CONT_HRES)
 
 ######
@@ -66,5 +57,3 @@ try:
         time.sleep(0.2)
 except KeyboardInterrupt:
     pass
-
-gpio.cleanup()
